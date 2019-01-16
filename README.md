@@ -1,9 +1,14 @@
 
 1. Install Node.js from <https://nodejs.org/en/>
-2. Clone the repository
-3. To install dependencies open console in folder with the project and run *npm install*
-4. Now you can run local server with *npm start*
-5. Server is located at <http://localhost:8081>
+2. To start local server clone the repository from <https://github.com/abalena/MyApp> and install dependencies.
+Open console and run next commands: 
+```
+git clone https://github.com/abalena/MyApp.git
+cd MyApp
+npm install
+npm start
+```
+4. Server is located at <http://localhost:8081>
 ***
 
 - URL: */api/v1/books*
