@@ -9,7 +9,4 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "body-parser": "^1.18.3"
-  }
 }
