@@ -1,42 +1,29 @@
 const fs = require('fs');
 const library = require('./library.json');
 class Router{
-    get(){
+  get(req, res){
       const libraryInString = fs.readFileSync('./library.json', 'utf8');
       res.write(libraryInString);
       res.end();
     };
 
-    post(){
+  post(req, res, getBody){
       getBody(addBook)
       res.end();
     };
 
-    put(){
+  put(req, res, getBody){
       getBody(updateBook);
       res.end();
     };
 
-    del(){
+  del(req, res, getBody){
       getBody(deleteBook)
       res.end();
     };
 }
-  function logBody(body){
-    console.log(body)
-  }
 
-  function getBody(callback){
-    let body = '';
-    req.on('data', (chunk) => {
-      body += chunk
-    }).on('end', () => {
-      callback(body)
-      logBody(body);
-    });
-  }
-
-  function addBook(body){
+function addBook(body){
     body = JSON.parse(body);
     const libraryInString = fs.readFileSync('./library.json', 'utf8');
     const libraryInJson = JSON.parse(libraryInString);
@@ -47,7 +34,7 @@ class Router{
     });
   }
 
-  function deleteBook(body){
+function deleteBook(body){
     body = JSON.parse(body);
     const libraryInString = fs.readFileSync('./library.json', 'utf8');
     const libraryInJson = JSON.parse(libraryInString);
@@ -59,7 +46,7 @@ class Router{
     });
   };
 
-  function updateBook(body){
+function updateBook(body){
     body = JSON.parse(body);
     const libraryInString = fs.readFileSync('./library.json', 'utf8');
     const libraryInJson = JSON.parse(libraryInString);
@@ -75,4 +62,4 @@ class Router{
     });
   }
 
-  module.exports = Router;
+module.exports = Router;
