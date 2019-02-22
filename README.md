@@ -11,20 +11,69 @@ npm start
 4. Server is located at <http://localhost:8081>
 ***
 
-- URL: */api/v1/books*
+# URL: */api/v1/books*
 
-- METHODS:
+# METHODS:
+
+ ## GET
+- SUCCESS RESPONSE:
+>  - code: 200
+   - content example:
+```json
+{
+   "books": [{
+     "id": 1,
+     "title": "The Great Gatsby" ,
+     "author": "F. Scott Fitzgerald"
+   }]
+ }
 ```
- GET | POST | DELETE
- ```
+
+## POST
+
+
+- DATA PARAMS:
+> - content-type: application/json
+  - body example:
+```json
+{
+    "id": "35",
+    "title": "Viatge D'anada I Tornada",
+    "author": "Gerard Pique"
+    }
+```
 - SUCCESS RESPONSE:
 >  code: 200
 
--CONTENT EXAMPLE:
-> {
-   "books": [{
-     "id": "id",
-     "title": "title",
-     "author": "author"
-   }]
- }
+## PUT
+
+
+- DATA PARAMS:
+>  - content-type: application/json
+   - body example:
+```json
+{
+  "id": "35",
+  "author": "Gerard"
+}
+```
+
+- SUCCESS RESPONSE:
+>  code: 200
+
+
+## DELETE
+
+
+- DATA PARAMS:
+> -  content-type: application/json
+  - body example:
+```json
+{
+	"id": "35",
+}
+```
+
+
+- SUCCESS RESPONSE:
+>  code: 200

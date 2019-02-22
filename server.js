@@ -1,42 +1,31 @@
 const http = require('http');
 const fs = require('fs');
 const library = require('./library.json');
-const Router = require('./index.js');
-const hostname = "127.0.0.1";
-const port = 8081;
+const bookMethods = require('./index.js')
+const bodyParser = require('body-parser');
+const express = require('express');
 
-const server = http.createServer((req, res) => {
-  res.writeHead(200, {'Content-Type': 'application/json'});
+const app = express();
+app.use(bodyParser.json())
 
-  const router = new Router();
-  function getBody(callback){
-      let body = '';
-      req.on('data', (chunk) => {
-        body += chunk
-      }).on('end', () => {
-        callback(body)
-      });
-    }
+app.get('/api/v1/books', (req, res) => {
+  bookMethods.reabBook(req, res);
+  res.end();
+});
+app.post('/api/v1/books', (req, res) => {
+  bookMethods.addBook(req, res);
+  res.end();
+});
+app.put('/api/v1/books', (req, res) => {
+  bookMethods.updateBook(req, res);
+  res.end();
+});
+app.delete('/api/v1/books', (req, res) => {
+  bookMethods.deleteBook(req, res);
+  res.end();
+});
 
-  if (req.url === "/api/v1/books") {
-    switch(req.method){
-      case "GET":
-        router.get(req, res);
-        break;
-      case "POST":
-        router.post(req, res, getBody);
-        break;
-      case "PUT":
-        router.put(req, res, getBody);
-        break;
-      case "DELETE":
-        router.del(req, res, getBody);
-        break;
-    }
-  } else {
-    res.write("ERROR: unknown url");
-    res.end();
-  }
+const port = process.env.PORT || 8081
+app.listen(port, () =>{
+  console.log('Express server listening on port ' + port)
 })
-
-server.listen(port, hostname);
